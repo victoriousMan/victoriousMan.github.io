@@ -1,0 +1,17 @@
+name: "Mansour Al Ghanim"
+title: "Assistant Professor"
+affiliation: "Computer Science, King Khalid University"
+location: "Abha, Saudi Arabia"
+email: "malghanim@kku.edu.sa"
+
+links:
+  google_scholar: "https://scholar.google.com/citations?user=IQ5UERsAAAAJ&hl=en"
+  linkedin: "https://www.linkedin.com/in/malghanim86"
+  github: "https://github.com/SecureDL"
+  cv: "/files/cv.pdf"
+
+photo: "/assets/profile.jpg"
+
+# GitHub Pages: site is served from victoriousMan.github.io
+# If you use account malghanim07 instead, update site_url in _config.yml
+site_url: "https://victoriousMan.github.io"

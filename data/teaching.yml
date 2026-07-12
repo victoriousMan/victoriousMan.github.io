@@ -1,0 +1,14 @@
+teaching:
+  - term: "2020"
+    role: "Teaching Assistant, Jazan University"
+    courses:
+      - "Programming in Java"
+      - "Artificial Intelligence"
+      - "Object-Oriented Programming"
+
+  - term: "2026"
+    role: "Assistant Professor, King Khalid University"
+    courses:
+      - "Operating System"
+      - "Advanced Programming"
+      - "Mobile Application Development"

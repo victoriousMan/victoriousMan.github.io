@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="{{ profile.name }} — {{ profile.title }}">
+  <meta name="author" content="{{ profile.name }}">
+  <title>{{ profile.name }}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-text">
+        <h1 class="site-name">{{ profile.name }}</h1>
+        <p class="site-role">{{ profile.title }}</p>
+        <p class="site-affiliation">{{ profile.affiliation }}</p>
+        <p class="site-location">{{ profile.location }}</p>
+        <p class="site-email">
+          <a href="mailto:{{ profile.email }}">{{ profile.email }}</a>
+        </p>
+        <nav class="site-links" aria-label="External profiles">
+          {% if profile.links.google_scholar %}
+          <a href="{{ profile.links.google_scholar }}" target="_blank" rel="noopener">Google Scholar</a>
+          {% endif %}
+          {% if profile.links.linkedin %}
+          <a href="{{ profile.links.linkedin }}" target="_blank" rel="noopener">LinkedIn</a>
+          {% endif %}
+          {% if profile.links.github %}
+          <a href="{{ profile.links.github }}" target="_blank" rel="noopener">GitHub</a>
+          {% endif %}
+          {% if profile.links.cv %}
+          <a href="{{ profile.links.cv }}">CV</a>
+          {% endif %}
+        </nav>
+      </div>
+      {% if profile.photo %}
+      <figure class="header-photo">
+        <img src="{{ profile.photo }}" alt="Portrait of {{ profile.name }}" width="200" height="200">
+      </figure>
+      {% endif %}
+    </div>
+  </header>
+
+  <main id="main" class="site-main">
+    {% if bio_html %}
+    <section class="section" id="biography">
+      <h2 class="section-title">Biography</h2>
+      <div class="prose">{{ bio_html | safe }}</div>
+    </section>
+    {% endif %}
+
+    {% if publications %}
+    <section class="section" id="publications">
+      <h2 class="section-title">Publications</h2>
+      <p class="section-note">Here are my peer-reviewed publications grouped by year.</p>
+
+      {% for year, pubs in publications_by_year %}
+      <div class="pub-year-group">
+        <h3 class="pub-year">{{ year }}</h3>
+        <ol class="pub-list">
+          {% for pub in pubs %}
+          <li class="pub-item">
+            <span class="pub-type" aria-label="Publication type">{{ pub.type }}</span>
+            <div class="pub-body">
+              <p class="pub-title">{{ pub.title }}{% if pub.note %} <span class="pub-note">({{ pub.note }})</span>{% endif %}</p>
+              <p class="pub-authors">
+                {% for author in pub.authors %}
+                  <span class="author{% if loop.last and pub.equal_contribution %} equal-mark{% endif %}">{{ author }}{% if not loop.last %}, {% endif %}</span>
+                {% endfor %}
+                {% if pub.equal_contribution %}<span class="equal-footnote"> *</span>{% endif %}
+              </p>
+              <p class="pub-venue">
+                <em>{{ pub.venue }}</em>{% if pub.location %}, {{ pub.location }}{% endif %}
+              </p>
+              {% if pub.links %}
+              <p class="pub-links">
+                {% if pub.links.paper %}<a href="{{ pub.links.paper }}">Paper</a>{% endif %}
+                {% if pub.links.arxiv %}<a href="{{ pub.links.arxiv }}">arXiv</a>{% endif %}
+                {% if pub.links.code %}<a href="{{ pub.links.code }}">Code</a>{% endif %}
+                {% if pub.links.slides %}<a href="{{ pub.links.slides }}">Slides</a>{% endif %}
+              </p>
+              {% endif %}
+            </div>
+          </li>
+          {% endfor %}
+        </ol>
+      </div>
+      {% endfor %}
+
+      {% if publications | selectattr('equal_contribution') | list %}
+      <p class="footnote">* indicates equal contribution.</p>
+      {% endif %}
+    </section>
+    {% endif %}
+
+    {% if awards %}
+    <section class="section" id="awards">
+      <h2 class="section-title">Honors &amp; Awards</h2>
+      <ul class="simple-list">
+        {% for award in awards %}
+        <li>
+          <span class="list-year">{{ award.year }}</span>
+          <span class="list-body"><strong>{{ award.title }}</strong>, {{ award.organization }}</span>
+        </li>
+        {% endfor %}
+      </ul>
+    </section>
+    {% endif %}
+
+    {% if experience %}
+    <section class="section" id="experience">
+      <h2 class="section-title">Work Experience</h2>
+      <ul class="timeline-list">
+        {% for job in experience %}
+        <li class="timeline-item">
+          <span class="timeline-date">{{ job.start }} – {{ job.end }}</span>
+          <span class="timeline-body">
+            <strong>{{ job.title }}</strong>, {{ job.organization }}{% if job.location %} — {{ job.location }}{% endif %}
+          </span>
+        </li>
+        {% endfor %}
+      </ul>
+    </section>
+    {% endif %}
+
+    {% if teaching %}
+    <section class="section" id="teaching">
+      <h2 class="section-title">Teaching</h2>
+      <ul class="simple-list">
+        {% for item in teaching %}
+        <li>
+          <span class="list-year">{{ item.term }}</span>
+          <span class="list-body">{{ item.role }} in {{ item.courses | join(', ') }}</span>
+        </li>
+        {% endfor %}
+      </ul>
+    </section>
+    {% endif %}
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; {{ current_year }} {{ profile.name }}</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,9 @@
+# Publications are auto-generated from bib/publications.bib when you run:
+#   python build.py
+#
+# You can also edit this file directly. Each entry supports:
+#   type: conference | journal | workshop | preprint | thesis
+#   title, authors, venue, year, location, note, equal_contribution
+#   links: { paper, code, arxiv, slides }
+
+publications: []

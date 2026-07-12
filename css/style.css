@@ -1,0 +1,375 @@
+/* Personal academic homepage — warm, editorial style */
+
+:root {
+  --bg: #f7f4ef;
+  --surface: #ffffff;
+  --text: #1c1917;
+  --text-muted: #57534e;
+  --accent: #0f766e;
+  --accent-hover: #0d5f58;
+  --border: #e7e0d6;
+  --type-label: #a8a29e;
+  --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --sans: "DM Sans", system-ui, -apple-system, sans-serif;
+  --max-width: 52rem;
+  --radius: 0.5rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--sans);
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  padding: 0.5rem 1rem;
+  background: var(--accent);
+  color: #fff;
+}
+
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+}
+
+/* Header */
+
+.site-header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 2.5rem 1.5rem;
+}
+
+.header-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.site-name {
+  font-family: var(--serif);
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 0 0 0.25rem;
+  letter-spacing: -0.02em;
+}
+
+.site-role {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--accent);
+  margin: 0 0 0.35rem;
+}
+
+.site-affiliation,
+.site-location {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+.site-email {
+  margin: 0.75rem 0;
+}
+
+.site-email a {
+  color: var(--text);
+  text-decoration: none;
+  border-bottom: 1px solid var(--border);
+}
+
+.site-email a:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.site-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  margin-top: 0.5rem;
+}
+
+.site-links a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.site-links a:hover {
+  color: var(--accent-hover);
+  text-decoration: underline;
+}
+
+.header-photo {
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.header-photo img {
+  display: block;
+  width: 11rem;
+  height: 11rem;
+  object-fit: cover;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 20px rgba(28, 25, 23, 0.08);
+}
+
+/* Main */
+
+.site-main {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 2rem 1.5rem 3rem;
+}
+
+.section {
+  margin-bottom: 2.75rem;
+}
+
+.section-title {
+  font-family: var(--serif);
+  font-size: 1.35rem;
+  font-weight: 600;
+  margin: 0 0 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--accent);
+  display: inline-block;
+}
+
+.section-note {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin: -0.5rem 0 1.25rem;
+}
+
+.prose p {
+  margin: 0 0 1rem;
+  font-family: var(--serif);
+  font-size: 1.05rem;
+}
+
+/* Publications — year groups + type prefix (no colored tags) */
+
+.pub-year-group {
+  margin-bottom: 1.75rem;
+}
+
+.pub-year {
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+  margin: 0 0 0.75rem;
+}
+
+.pub-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.pub-item {
+  display: grid;
+  grid-template-columns: 5.5rem 1fr;
+  gap: 0.75rem 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.pub-item:last-child {
+  border-bottom: none;
+}
+
+.pub-type {
+  font-size: 0.72rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--type-label);
+  padding-top: 0.2rem;
+  line-height: 1.4;
+}
+
+.pub-body {
+  min-width: 0;
+}
+
+.pub-title {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 1.02rem;
+  margin: 0 0 0.25rem;
+  line-height: 1.4;
+}
+
+.pub-note {
+  font-weight: 400;
+  font-style: italic;
+  color: var(--text-muted);
+}
+
+.pub-authors {
+  margin: 0 0 0.2rem;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.pub-venue {
+  margin: 0 0 0.35rem;
+  font-size: 0.92rem;
+  color: var(--text-muted);
+}
+
+.pub-links {
+  margin: 0;
+  font-size: 0.88rem;
+}
+
+.pub-links a {
+  color: var(--accent);
+  text-decoration: none;
+  margin-right: 0.85rem;
+}
+
+.pub-links a:hover {
+  text-decoration: underline;
+}
+
+.equal-footnote,
+.footnote {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 0.5rem;
+}
+
+/* Lists */
+
+.simple-list,
+.timeline-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.simple-list li {
+  display: grid;
+  grid-template-columns: 5rem 1fr;
+  gap: 0.5rem 1rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.timeline-item {
+  display: grid;
+  grid-template-columns: minmax(11.5rem, auto) 1fr;
+  gap: 0.5rem 1.25rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.simple-list li:last-child,
+.timeline-item:last-child {
+  border-bottom: none;
+}
+
+.list-year,
+.timeline-date {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.list-body,
+.timeline-body {
+  font-size: 0.97rem;
+}
+
+/* Footer */
+
+.site-footer {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 1.5rem;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+/* Responsive */
+
+@media (max-width: 640px) {
+  .header-inner {
+    flex-direction: column-reverse;
+    align-items: center;
+    text-align: center;
+  }
+
+  .site-links {
+    justify-content: center;
+  }
+
+  .pub-item {
+    grid-template-columns: 1fr;
+    gap: 0.25rem;
+  }
+
+  .pub-type {
+    padding-top: 0;
+  }
+
+  .simple-list li {
+    grid-template-columns: 1fr;
+    gap: 0.15rem;
+  }
+
+  .timeline-item {
+    grid-template-columns: 1fr;
+    gap: 0.15rem;
+  }
+}
+
+@media print {
+  body {
+    background: #fff;
+  }
+
+  .site-header {
+    border-bottom: 1px solid #ccc;
+  }
+
+  .pub-links a::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+  }
+}
