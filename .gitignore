@@ -16,3 +16,6 @@ Thumbs.db
 
 # Generated site (optional: commit index.html for zero-CI deploy)
 # index.html
+
+# Keep local setup notes private
+README.md
